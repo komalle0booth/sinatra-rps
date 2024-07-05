@@ -2,24 +2,53 @@ require "sinatra"
 require "sinatra/reloader"
 
 get("/") do
-  "
-  <h1>Welcome to your Sinatra App!</h1>
-  <p>Define some routes in app.rb</p>
-  "
+  erb(:welcome)
 end
 
 get("/rock") do
-  @we_played = "Rock"
+  @we_played = "rock"
   
-  @op_played = ["Rock", "Paper", "Scissors"].sample
+  @op_played = ["rock", "paper", "scissors"].sample
     
   if @we_played == @op_played
     @result = "We tied!"
-  elsif @we_played == "Rock" && @op_played == "Scissors"
+  elsif @we_played == "rock" && @op_played == "scissors"
     @result = "We won!"
-  elsif @we_played == "Rock" && @op_played == "Paper"
+  elsif @we_played == "rock" && @op_played == "paper"
     @result = "We lost!"
   end 
 
   erb(:rock)
+end
+
+get("/paper") do
+  @we_played = "paper"
+  
+  @op_played = ["rock", "paper", "scissors"].sample
+    
+  if @we_played == @op_played
+    @result = "We tied!"
+  elsif @we_played == "paper" && @op_played == "scissors"
+    @result = "We lost!"
+  elsif @we_played == "paper" && @op_played == "rock"
+    @result = "We won!"
+  end 
+
+  erb(:paper)
+end
+
+get("/scissors") do
+  @we_played = "scissors"
+  
+  @op_played = ["rock", "paper", "scissors"].sample
+    
+  if @we_played == @op_played
+    @result = "We tied!"
+  elsif @we_played == "scissors" && @op_played == "paper"
+    @result = "We won!"
+  elsif @we_played == "scissors" && @op_played == "rock"
+    @result = "We lost!"
+  end 
+
+  erb(:scissors)
 end
